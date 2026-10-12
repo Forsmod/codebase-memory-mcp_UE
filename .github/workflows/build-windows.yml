@@ -1,0 +1,42 @@
+name: Build Windows Binary
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: CLANG64
+          path-type: inherit
+          install: >-
+            mingw-w64-clang-x86_64-clang
+            mingw-w64-clang-x86_64-zlib
+            make
+            python
+            unzip
+            zip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build release binary with UI
+        shell: msys2 {0}
+        run: |
+          scripts/build.sh --with-ui CC=clang CXX=clang++
+
+      - name: Upload codebase-memory-mcp.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: codebase-memory-mcp-windows-x64
+          path: build/c/codebase-memory-mcp.exe
+          if-no-files-found: error
