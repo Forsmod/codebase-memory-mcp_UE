@@ -328,16 +328,6 @@ const char *uasset_resolve_name(const uasset_package_t *pkg, int32_t index) {
     return NULL;
 }
 
-static bool str_ends_with(const char *str, const char *suffix) {
-    if (!str || !suffix)
-        return false;
-    size_t s_len = strlen(str);
-    size_t suf_len = strlen(suffix);
-    if (s_len < suf_len)
-        return false;
-    return strcmp(str + s_len - suf_len, suffix) == 0;
-}
-
 bool uasset_is_blueprint(const uasset_package_t *pkg) {
     if (!pkg || pkg->name_count == 0 || pkg->export_count == 0)
         return false;
