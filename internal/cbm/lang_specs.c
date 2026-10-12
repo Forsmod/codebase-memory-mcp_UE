@@ -2750,7 +2750,9 @@ static const CBMLangSpec lang_specs[CBM_LANG_COUNT] = {
                         plsql_module_types, plsql_call_types, empty_types, empty_types,
                         plsql_branch_types, empty_types, plsql_assign_types, plsql_throw_types,
                         NULL, empty_types, NULL, NULL, tree_sitter_plsql, NULL},
-
+    // CBM_LANG_BLUEPRINT — Unreal Engine Blueprint binary packages (.uasset).
+    // No grammar row: extraction reads package tables directly (extract_uasset.c).
+    [CBM_LANG_BLUEPRINT] = {0},
 };
 
 _Static_assert(sizeof(lang_specs) / sizeof(lang_specs[0]) == CBM_LANG_COUNT,

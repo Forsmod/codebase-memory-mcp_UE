@@ -32,7 +32,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#ifdef _WIN32
+#include <io.h>
+#define isatty _isatty
+#else
 #include <unistd.h>
+#endif
 
 /* ── Global counters (defined in test_main.c) ──────────────────── */
 

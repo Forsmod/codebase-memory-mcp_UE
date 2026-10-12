@@ -49,6 +49,10 @@ char *cbm_strndup(const char *s, size_t n);
 
 /* ── getline (Windows lacks it) ───────────────────────────────── */
 #ifdef _WIN32
+#ifndef _SSIZE_T_DEFINED
+typedef intptr_t ssize_t;
+#define _SSIZE_T_DEFINED
+#endif
 /* Implemented in compat.c */
 ssize_t cbm_getline(char **lineptr, size_t *n, FILE *stream);
 #else

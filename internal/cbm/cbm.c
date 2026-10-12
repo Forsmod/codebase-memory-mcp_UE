@@ -11,6 +11,7 @@
 #include "helpers.h"
 #include "lang_specs.h"
 #include "extract_unified.h"
+#include "extract_uasset.h"
 #include "lsp/go_lsp.h"
 #include "lsp/c_lsp.h"
 #include "lsp/php_lsp.h"
@@ -2862,6 +2863,25 @@ static CBMFileResult *extract_file_ex_body(const char *source, int source_len, C
             .module_qn = result->module_qn,
         };
         cbm_extract_diagram_file(&diagram_ctx);
+        cbm_index_mark_done(rel_path);
+        return result;
+    }
+    /* Unreal Engine Blueprint (.uasset) packages have no grammar: binary package
+     * tables are read directly (extract_uasset.c). */
+    if (language == CBM_LANG_BLUEPRINT) {
+        result->module_qn = cbm_fqn_module_source_lang(a, project, rel_path, language);
+        CBMExtractCtx uasset_ctx = {
+            .arena = a,
+            .scratch = scratch,
+            .result = result,
+            .source = source,
+            .source_len = source_len,
+            .language = language,
+            .project = project,
+            .rel_path = rel_path,
+            .module_qn = result->module_qn,
+        };
+        cbm_uasset_extract_blueprint(&uasset_ctx);
         cbm_index_mark_done(rel_path);
         return result;
     }

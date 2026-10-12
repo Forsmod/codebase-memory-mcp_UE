@@ -692,6 +692,9 @@ static const ext_entry_t EXT_TABLE[] = {
     /* Typst */
     {".typ", CBM_LANG_TYPST},
 
+    /* Blueprint */
+    {".uasset", CBM_LANG_BLUEPRINT},
+
     /* VHDL */
     {".vhd", CBM_LANG_VHDL},
 
@@ -939,7 +942,7 @@ static const char *LANG_NAMES[CBM_LANG_COUNT] = {
     [CBM_LANG_OBJECTSCRIPT_EXPORT] = "ObjectScript Export XML",
     [CBM_LANG_ARKTS] = "ArkTS",
     [CBM_LANG_PLSQL] = "PL/SQL",
-
+    [CBM_LANG_BLUEPRINT] = "Blueprint",
 };
 
 /* ── Public API ──────────────────────────────────────────────────── */

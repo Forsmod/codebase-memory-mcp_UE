@@ -1302,6 +1302,12 @@ TEST(lang_ext_sosl) {
     PASS();
 }
 
+TEST(lang_ext_uasset) {
+    ASSERT_EQ(cbm_language_for_extension(".uasset"), CBM_LANG_BLUEPRINT);
+    ASSERT_STR_EQ(cbm_language_name(CBM_LANG_BLUEPRINT), "Blueprint");
+    PASS();
+}
+
 /* --- Ported from lang_test.go: TestForLanguage --- */
 TEST(lang_all_have_names) {
     /* Every language enum value from 0 to CBM_LANG_COUNT-1
@@ -1749,6 +1755,7 @@ SUITE(language) {
     RUN_TEST(lang_ext_apex);
     RUN_TEST(lang_ext_soql);
     RUN_TEST(lang_ext_sosl);
+    RUN_TEST(lang_ext_uasset);
 
     RUN_TEST(lang_all_have_names);
     RUN_TEST(lang_probe_bytes_follow_the_name);

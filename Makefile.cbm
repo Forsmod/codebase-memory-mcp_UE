@@ -381,6 +381,8 @@ EXTRACTION_SRCS = \
     $(CBM_DIR)/doc_adr.c \
     $(CBM_DIR)/doc_pdf.c \
     $(CBM_DIR)/doc_adoc.c \
+    $(CBM_DIR)/uasset_reader.c \
+    $(CBM_DIR)/extract_uasset.c \
     $(CBM_DIR)/pdf/pdf_obj.c \
     $(CBM_DIR)/pdf/pdf_font.c \
     $(CBM_DIR)/pdf/pdf_text.c \
